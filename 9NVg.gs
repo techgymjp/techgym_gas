@@ -194,7 +194,7 @@ function changeCellRed(sheet, lastRow) {
 
 function getScheduledWorkingHours() {
   let URL = "1G7FOWOBw6VAWmsRPgtmz0NiozgS0aScA1iJdqxnOrpc/edit#gid=762044343"
-  let time = `IMPORTRANGE("${URL}","I2")`
+  let time = `IMPORTRANGE("${URL}","設定_従業員!E2")`
   console.log(time)
   return time
 }

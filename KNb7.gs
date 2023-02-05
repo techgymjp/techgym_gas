@@ -42,12 +42,10 @@ function getMemberLists() {
   return lists;
 }
 
-//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから冨田が追加ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-
 function enterSalary() {
   const sheet1 = getSheet("支給額算出")
   const sheet3 = getSheet("設定_従業員")
-  let lastRow = sheet1.getRange(sheet1.getMaxRows(), CELL_INFO.NAME).getNextDataCell(SpreadsheetApp.Direction.UP).getRow();//最終行を取得
+  let lastRow = sheet1.getRange(sheet1.getMaxRows(), CELL_INFO.NAME).getNextDataCell(SpreadsheetApp.Direction.UP).getRow();
   for (let row = 2; row <= lastRow; row++) {
     executioy(row, sheet1, sheet3)
   }
@@ -61,9 +59,9 @@ function executioy(row, sheet1, sheet3) {
   enterTotalSalary(row, sheet1)
 }
 
-function getScheduledWorkingHours(number) { //所定労働時間と残業時間を取得 引数
+function getScheduledWorkingHours(number) {
   let lists = getMemberLists()
-  let URL = lists[number].sheet //スプレッドシートのURL
+  let URL = lists[number].sheet
   let sheetName = getSheetName()
   if (isSheetExists(sheetName, URL)) {
     let times = []
@@ -74,7 +72,7 @@ function getScheduledWorkingHours(number) { //所定労働時間と残業時間�
   return null;
 }
 
-function isSheetExists(sheetName, url) { //シートが存在するかを確認する。
+function isSheetExists(sheetName, url) {
   let sheet = SpreadsheetApp.openByUrl(url)
   let allSheets = sheet.getSheets();
   for (let i = 0; i < allSheets.length; i++) {
@@ -83,7 +81,7 @@ function isSheetExists(sheetName, url) { //シートが存在するかを確認�
   return false;
 }
 
-function getSheetName() { //userSheetのシートの名前を取得
+function getSheetName() {
   const sheet = getSheet("設定_算出用")
   let year = sheet.getRange(1, 3).getValue()
   let month = sheet.getRange(2, 3).getValue()
@@ -91,7 +89,7 @@ function getSheetName() { //userSheetのシートの名前を取得
   return sheetName;
 }
 
-function overTimeEnter(row, sheet) { //支出額算出に残業時間を記入する
+function overTimeEnter(row, sheet) {
   let times = getScheduledWorkingHours(row - 2)
   if (times) {
     let overTime = times[1]
@@ -101,36 +99,36 @@ function overTimeEnter(row, sheet) { //支出額算出に残業時間を記入�
   }
 }
 
-function getHourlyWage(row, sheet) { //時給の値を取得する
+function getHourlyWage(row, sheet) {
   hourlyWage = sheet.getRange(row, CELL_INFO.HOURLYWAGE).getValue()
   return hourlyWage;
 }
 
-function enterOverTimePay(row, sheet) { //残業代を記入する
+function enterOverTimePay(row, sheet) {
   let overTime = sheet.getRange(row, CELL_INFO.OVERTIME).getValue()
   if (overTime) {
     let hour = overTime.getHours();
     let minute = overTime.getMinutes();
     let hourlyWage = getHourlyWage(row, sheet)
     let timePay = (hour * hourlyWage + minute * hourlyWage / 60) * 1.25
-    timePay = Math.round(timePay / 1) * 1 //四捨五入
+    timePay = Math.round(timePay / 1) * 1
     sheet.getRange(row, CELL_INFO.OVERTIMEPAY).setValue(timePay);
   } else {
     sheet.getRange(row, CELL_INFO.OVERTIMEPAY).setValue("0")
   }
 }
 
-function enterBasicSalary(row, sheet1, sheet3) { //基本給を記入する
+function enterBasicSalary(row, sheet1, sheet3) {
   basicSalary = sheet3.getRange(row, CELL_INFO.BASICSALAY).getValue()
   sheet1.getRange(row, CELL_INFO.BASICSALAY).setValue(basicSalary)
 }
 
-function enterHourlyPay(row, sheet1, sheet3) { //時給を記入する
+function enterHourlyPay(row, sheet1, sheet3) {
   basicSalary = sheet3.getRange(row, CELL_INFO.HOURLYWAGE).getValue()
   sheet1.getRange(row, CELL_INFO.HOURLYWAGE).setValue(basicSalary)
 }
 
-function enterTotalSalary(row, sheet) { //総支給額を記入する
+function enterTotalSalary(row, sheet) {
   let basicSalary = sheet.getRange(row, CELL_INFO.BASICSALAY).getValue()
   let overTimePay = sheet.getRange(row, CELL_INFO.OVERTIMEPAY).getValue()
   if (!overTimePay) {
