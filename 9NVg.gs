@@ -193,8 +193,8 @@ function changeCellRed(sheet, lastRow) {
 }
 
 function getScheduledWorkingHours() {
-  let URL = "1G7FOWOBw6VAWmsRPgtmz0NiozgS0aScA1iJdqxnOrpc/edit#gid=762044343"
-  let time = `IMPORTRANGE("${URL}","設定_従業員!E2")`
+  let URL = "1zUb-pXyWQw-FWDC833zi-OoTGwPagdVCWPVR5KeSbSc/edit#gid=0"
+  let time = `IMPORTRANGE("${URL}","支給額算出!G2")`
   console.log(time)
   return time
 }
@@ -213,8 +213,8 @@ function calcOverTime(col, sheet) {
 function calcWorkingTime(col, sheet) {
   let hour = sheet.getRange(col, CELL_INFO.WORKTIME).getValue().getHours();
   let time = getScheduledWorkingHours()
-  if (hour <= 8) {
-    sheet.getRange(col, CELL_INFO.REGULARTIME).setValue("=E3");
+  if (hour >= 8) {
+    sheet.getRange(col, CELL_INFO.REGULARTIME).setValue(sheet.getRange(col, CELL_INFO.WORKTIME).getValue());
   } else {
     sheet.getRange(col, CELL_INFO.REGULARTIME).setValue(`=${time}`);
   }
