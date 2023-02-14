@@ -29,7 +29,7 @@ function setMonthList() {
 }
 
 function getMemberLists() {
-  const sheet = getSheet('設定_従業員');
+  const sheet = getSheet('支給額算出'); //const sheet = getSheet('設定_従業員');
   const lastRow = sheet.getLastRow();
   const lists = [];
   for (let i = 0; i < lastRow; i++) {
@@ -37,25 +37,22 @@ function getMemberLists() {
     lists[i].name = sheet.getRange(i + 2, 1).getValue();
     lists[i].basePay = sheet.getRange(i + 2, 2).getValue();
     lists[i].hourlyPay = sheet.getRange(i + 2, 3).getValue();
-    lists[i].sheet = sheet.getRange(i + 2, 4).getValue();
+    lists[i].sheet = sheet.getRange(i + 2, 8).getValue();
   }
   return lists;
 }
 
 function enterSalary() {
   const sheet1 = getSheet("支給額算出")
-  const sheet3 = getSheet("設定_従業員")
   let lastRow = sheet1.getRange(sheet1.getMaxRows(), CELL_INFO.NAME).getNextDataCell(SpreadsheetApp.Direction.UP).getRow();
   for (let row = 2; row <= lastRow; row++) {
-    executioy(row, sheet1, sheet3)
+    executioy(row, sheet1)
   }
 }
 
-function executioy(row, sheet1, sheet3) {
+function executioy(row, sheet1) {
   overTimeEnter(row, sheet1)
-  enterHourlyPay(row, sheet1, sheet3)
   enterOverTimePay(row, sheet1)
-  enterBasicSalary(row, sheet1, sheet3)
   enterTotalSalary(row, sheet1)
 }
 
@@ -64,10 +61,8 @@ function getScheduledWorkingHours(number) {
   let URL = lists[number].sheet
   let sheetName = getSheetName()
   if (isSheetExists(sheetName, URL)) {
-    let times = []
-    times.push(`=IMPORTRANGE("${URL}","${sheetName}!G3")`)
-    times.push(`=IMPORTRANGE("${URL}","${sheetName}!H3")`)
-    return times;
+    let time =`=IMPORTRANGE("${URL}","${sheetName}!H2")`
+    return time;
   }
   return null;
 }
@@ -90,9 +85,9 @@ function getSheetName() {
 }
 
 function overTimeEnter(row, sheet) {
-  let times = getScheduledWorkingHours(row - 2)
-  if (times) {
-    let overTime = times[1]
+  let time = getScheduledWorkingHours(row - 2)
+  if (time) {
+    let overTime = time
     sheet.getRange(row, CELL_INFO.OVERTIME).setValue(overTime);
   } else {
     sheet.getRange(row, CELL_INFO.OVERTIME).setValue("0")
@@ -118,15 +113,6 @@ function enterOverTimePay(row, sheet) {
   }
 }
 
-function enterBasicSalary(row, sheet1, sheet3) {
-  basicSalary = sheet3.getRange(row, CELL_INFO.BASICSALAY).getValue()
-  sheet1.getRange(row, CELL_INFO.BASICSALAY).setValue(basicSalary)
-}
-
-function enterHourlyPay(row, sheet1, sheet3) {
-  basicSalary = sheet3.getRange(row, CELL_INFO.HOURLYWAGE).getValue()
-  sheet1.getRange(row, CELL_INFO.HOURLYWAGE).setValue(basicSalary)
-}
 
 function enterTotalSalary(row, sheet) {
   let basicSalary = sheet.getRange(row, CELL_INFO.BASICSALAY).getValue()
