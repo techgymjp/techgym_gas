@@ -193,8 +193,8 @@ function changeCellRed(sheet, lastRow) {
 }
 
 function getScheduledWorkingHours() {
-  let URL = "1zUb-pXyWQw-FWDC833zi-OoTGwPagdVCWPVR5KeSbSc/edit#gid=0"
-  let time = `IMPORTRANGE("${URL}","支給額算出!G2")`
+  let URL = "管理側用スプレッドシートのID/edit#gid=0"
+  let time = `IMPORTRANGE("${URL}","支給額算出!G2")` //二人目以降はG3,G4とする
   console.log(time)
   return time
 }
@@ -214,8 +214,8 @@ function calcWorkingTime(col, sheet) {
   let hour = sheet.getRange(col, CELL_INFO.WORKTIME).getValue().getHours();
   let time = getScheduledWorkingHours()
   if (hour >= 8) {
-    sheet.getRange(col, CELL_INFO.REGULARTIME).setValue(sheet.getRange(col, CELL_INFO.WORKTIME).getValue());
-  } else {
     sheet.getRange(col, CELL_INFO.REGULARTIME).setValue(`=${time}`);
+  } else {
+    sheet.getRange(col, CELL_INFO.REGULARTIME).setValue(sheet.getRange(col, CELL_INFO.WORKTIME).getValue());
   }
 }
