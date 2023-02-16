@@ -200,7 +200,6 @@ function changeCellRed(sheet, lastRow) {
 function getScheduledWorkingHours() {
   let URL = "管理側用スプレッドシートのID/edit#gid=0"
   let time = `IMPORTRANGE("${URL}","支給額算出!G2")`
-  console.log(time)
   return time
 }
 
