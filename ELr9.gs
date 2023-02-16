@@ -68,7 +68,6 @@ function setStartTime() {
       break;
     }
   }
-  console.log(lastRow)
   if (lastRow != 2 && sheet.getRange(lastRow, CELL_INFO.END).isBlank()) {
     let result = Browser.msgBox("終了ボタンを押し忘れています", Browser.Buttons.OK);
     if (result == "ok") {
