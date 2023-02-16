@@ -1,4 +1,4 @@
-let ss = SpreadsheetApp.getActiveSpreadsheet();
+let userSheet = SpreadsheetApp.getActiveSpreadsheet();
 let sheet1 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("勤怠管理");
 let lastRow = sheet1.getLastRow();
 let date = new Date();
@@ -22,7 +22,7 @@ function set_sheet(sheet_name) {
   let sheet = SpreadsheetApp.getActive().getSheetByName(sheet_name)
   if (sheet)
     return sheet
-  sheet = sheet1.copyTo(ss)
+  sheet = sheet1.copyTo(userSheet)
   sheet.setName(sheet_name);
   return sheet;
 }
