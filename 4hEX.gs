@@ -214,7 +214,6 @@ function calcOverTime(col, sheet) {
   }
 }
 
-
 function calcWorkingTime(col, sheet) {
   let hour = sheet.getRange(col, CELL_INFO.WORKTIME).getValue().getHours();
   let time = getScheduledWorkingHours()
