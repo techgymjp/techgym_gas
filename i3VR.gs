@@ -110,7 +110,6 @@ function enterOverTimePay(row, sheet) {
   }
 }
 
-
 function enterTotalSalary(row, sheet) {
   let basicSalary = sheet.getRange(row, CELL_INFO.BASICSALAY).getValue()
   let overTimePay = sheet.getRange(row, CELL_INFO.OVERTIMEPAY).getValue()
