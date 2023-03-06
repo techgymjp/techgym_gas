@@ -1,4 +1,4 @@
-let userSheet = SpreadsheetApp.getActiveSpreadsheet();
+let ss = SpreadsheetApp.getActiveSpreadsheet();
 let sheet1 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("勤怠管理");
 let lastRow = sheet1.getLastRow();
 let date = new Date();
@@ -18,18 +18,18 @@ function onOpen() {
   menu.addToUi();
 }
 
-function set_sheet(sheet_name) {
-  let sheet = SpreadsheetApp.getActive().getSheetByName(sheet_name)
+function setSheet(sheetName) {
+  let sheet = SpreadsheetApp.getActive().getSheetByName(sheetName)
   if (sheet)
     return sheet
-  sheet = sheet1.copyTo(userSheet)
-  sheet.setName(sheet_name);
+  sheet = sheet1.copyTo(ss)
+  sheet.setName(sheetName);
   return sheet;
 }
 
 function setStartTime() {
   let workMonth = Utilities.formatDate(date, 'Asia/Tokyo', 'yyyy/MM');
-  let sheet = set_sheet(workMonth);
+  let sheet = setSheet(workMonth);
   let lastRow = sheet.getLastRow();
   let workDate = Utilities.formatDate(date, 'Asia/Tokyo', 'yyyy/MM/dd');
   let workStart = Utilities.formatDate(date, 'Asia/Tokyo', 'H:mm');
@@ -60,7 +60,7 @@ function setStartTime() {
 
 function setEndTime() {
   let workMonth = Utilities.formatDate(date, 'Asia/Tokyo', 'yyyy/MM');
-  let sheet = set_sheet(workMonth);
+  let sheet = setSheet(workMonth);
   let lastRow = sheet.getLastRow();
   let workEnd = Utilities.formatDate(date, 'Asia/Tokyo', 'H:mm');
   if (!sheet.getRange(lastRow, ENDCELL).isBlank() && sheet.getRange(lastRow + 1, STARTCELL).isBlank()) {
