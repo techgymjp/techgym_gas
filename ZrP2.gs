@@ -158,8 +158,6 @@ function makeFolder(){
 function makeInvitation() {
   seminar_lists = readSeminarLists();
   reception_seminars = getReceptionSeminars(seminar_lists);
-  place_lists = readPlaceLists();
-  place_id = getPlaceID(reception_seminars);
   folder = makeFolder();
   file = DriveApp.getFileById(invitation.getId());
   copy = file.makeCopy(folder);
@@ -167,7 +165,6 @@ function makeInvitation() {
   copy_file = DocumentApp.openById(copy.getId());
   insertTable(copy_file, reception_seminars);
   createQR(copy_file);
-  appendMap(place_lists, copy_file);
 }
 
 // 第3節　申し込みフォームのQRコードを作成しよう
