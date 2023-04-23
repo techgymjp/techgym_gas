@@ -1,0 +1,19 @@
+﻿GASコース4章 - 事前準備
+
+
+スプレッドシートとドキュメントについては、「ファイル」→「コピーを作成」からコピーして使っていただいても構いません。
+
+
+・スプレッドシート1つ
+【GAS4章】事前準備＆各種リスト
+https://docs.google.com/spreadsheets/d/1BGAqvZwjxlP98o3BawRopRe3je8peHPirN-XZ7C_2KI/edit?usp=sharing
+
+
+・ドキュメント1つ
+【GAS4章】セミナー案内状雛形
+https://docs.google.com/document/d/1XD4ST7F-WecDe_bPF56PjGQXregR6onO9G5cbBIubKQ/edit?usp=sharing
+
+
+・フォーム1つ ※コピーができないので、スクリプトを実行しましょう。(4-0-1を参照)
+【GAS4章】申し込みフォーム
+https://docs.google.com/forms/d/1VBoHlsqcF1P-YU_HdTV1DosOd8mIKe3i6RyPuRKPTOY/edit
