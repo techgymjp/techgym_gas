@@ -20,7 +20,6 @@ function getQuestions() {
   questions = [];
   question_values = form_item.getDataRange().getValues();
   question_values.shift();
-
   for (i = 0; i < question_values.length; i++) {
     questions[i] = [];
     questions[i]['title'] = question_values[i][0];
