@@ -138,7 +138,6 @@ function setTableContents(reception_seminars) {
 function insertTable(copy_file, reception_seminars) {
   table_titles = setTableTitles();
   table_contents = setTableContents(reception_seminars);
-
   table = [];
   table.push(table_titles);
   table_contents.forEach(function(content){

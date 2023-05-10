@@ -217,6 +217,12 @@ function appendMap(place_lists, copy_file) {
 }
 
 // 第5節　顧客の最寄駅から会場までの所要時間と交通費を表示しよう
+function readClientLists() {
+  client_lists = [];
+
+  return client_lists;
+}
+
 function getAccess(place_lists,client_lists, id, i, copy_file) {
 
 }

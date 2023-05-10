@@ -139,7 +139,6 @@ function setTableContents(reception_seminars) {
 function insertTable(copy_file, reception_seminars) {
   table_titles = setTableTitles();
   table_contents = setTableContents(reception_seminars);
-
   table = [];
   table.push(table_titles);
   table_contents.forEach(function(content){
@@ -291,7 +290,6 @@ function getFileInfo(){
 function makePDF() {
   folder_id = getFolderID();
   file_info = getFileInfo();
-
   file_info.forEach(function(info){
     url = 'https://docs.google.com/document/d/'+ info[0] +'/export?';
     opts = {
@@ -311,7 +309,6 @@ function makePDF() {
         'Authorization': 'Bearer ' +  token
       }
     });
-  
     blob = response.getBlob().setName(info[1] + '.pdf');
     DriveApp.getFolderById(folder_id).createFile(blob);
   })
