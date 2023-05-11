@@ -243,7 +243,6 @@ function getAccess(place_lists,client_lists, id, i, copy_file) {
                   .setOrigin(client_address)
                   .setDestination(seminar_address)
                   .setMode(Maps.DirectionFinder.Mode.TRANSIT)
-                  .setArrive(new Date(2023, 4, 1, 10))
                   .getDirections();
   route = directions.routes[0];
   if (route['fare']) {
