@@ -170,7 +170,6 @@ function makeInvitation() {
     insertTable(copy_file, reception_seminars);
     createQR(copy_file);
     appendMap(place_lists,client_lists, i, copy_file);
-    replaceBody(i, copy_file);
   }
 }
 
