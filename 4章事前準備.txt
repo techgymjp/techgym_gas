@@ -14,6 +14,4 @@ https://docs.google.com/spreadsheets/d/1ZRkJb4-PrXtZGI8Q70i16qiiZy5t-JwMicBRWGLF
 https://docs.google.com/document/d/1UiKVAd76_AtuR_ya0d5bmgfrCidw1MleK-99pwshXN0/edit?usp=sharing
 
 
-・フォーム1つ ※コピーができないので、スクリプトを実行しましょう。(4-0-1を参照)
-【GAS4章】申し込みフォーム
-https://docs.google.com/forms/d/1VBoHlsqcF1P-YU_HdTV1DosOd8mIKe3i6RyPuRKPTOY/edit
+・フォーム1つ ※コピーができないので、新規作成後スクリプトを実行しましょう。(4-0-1を参照)
