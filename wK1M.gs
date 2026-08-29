@@ -177,9 +177,9 @@ function makeInvitation() {
 // 第3節　申し込みフォームのQRコードを作成しよう
 function createQR(copy_file) {
   form_url = FormApp.getActiveForm().getPublishedUrl();
-  qr = UrlFetchApp.fetch('http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + form_url);
-  image = qr.getBlob().setName('申し込みフォーム');
-  copy_file.insertImage(19, image);
+  qr_url ='https://quickchart.io/qr?size=150&text=' + encodeURIComponent(form_url);
+  image = UrlFetchApp.fetch(qr_url).getBlob().setName('申し込みフォーム.png');
+  copy_file.getBody().insertImage(19, image);
 }
 
 // 第4節　会場付近の地図を案内状に挿入しよう
